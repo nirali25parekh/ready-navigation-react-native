@@ -17,7 +17,7 @@ class SignUpScreen extends Component {
 
   render() {
     return (
-      <Container style={{ backgroundColor: '#4fc3fa'}}>
+      <Container style={{ backgroundColor: '#4fc3fa' }}>
         <Content>
           <ScrollView>
             <Body>
@@ -48,9 +48,21 @@ class SignUpScreen extends Component {
                 <Label style={styles.label}>Address</Label>
                 <Input />
               </Item>
+
               <TouchableOpacity rounded style={styles.regButton}>
                 <Text style={styles.buttonText}>Register</Text>
               </TouchableOpacity>
+
+              <View style={{ flexDirection: 'row', marginTop: 10 }}>
+                <View style={{ marginRight: 4, }}>
+                  <Text>Existing User?</Text></View>
+                <View style={{ marginLeft: 4, }}>
+                  <TouchableOpacity onPress={() => this.props.navigation.navigate('LoginScreen')}>
+                    <Text style={styles.login}>Login</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+
             </Body>
           </ScrollView>
         </Content>
@@ -108,6 +120,10 @@ const styles = StyleSheet.create({
   label: {
     marginTop: 5,
     marginBottom: 10
-  }
+  },
+  login: {
+    color: '#119',
+    textDecorationLine: 'underline',
+},
 
 })
