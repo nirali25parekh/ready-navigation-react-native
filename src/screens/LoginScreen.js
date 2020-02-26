@@ -1,146 +1,111 @@
-import React from 'react'
-import { View, TextInput, Button, TouchableOpacity, StyleSheet, Text, Image, TouchableHighlight, } from 'react-native'
-import { Icon , Container, Header, Left, Right, Body,Title} from 'native-base'
-import { Switch } from 'react-native-switch'
 
-export default class LoginScreen extends React.Component {
-    componentDidMount() {
-        console.disableYellowBox = true;
-      }
-    state = {
-        switchValue: false,
-        username: '',
-        password: '',
-    }
-    render() {
-        return (
-            <Container>
-            <Header style={{backgroundColor: "#22252a"}}>
+import React, { Component } from 'react';
+import { Button, Body, Input, Container, Content, Header, Item, Label, } from 'native-base';
+import {
+  SafeAreaView,
+  StyleSheet,
+  ScrollView,
+  View,
+  Text,
+  StatusBar,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Dimensions,
+} from 'react-native';
 
-                <Body style={{marginLeft: 40}}>
-                    <Title>Login Page</Title>
-                </Body>
-                <Right />
-            </Header>
+class LoginScreen extends Component {
+  render() {
+    return (
+      <Container style={{ backgroundColor: '#4fc3fa' }}>
+        <Content>
+          <ScrollView>
 
-            <View style={styles.container}>
-
-                <View style={styles.outerBox}>
-
-
-                    <View style={styles.inputContainer}>
-                        <Icon name="person" style={styles.iconStyle} />
-                        <TextInput style={styles.inputs}
-                            placeholder="Username"
-                            onChangeText={this.setUsername} />
-                    </View>
-
-                    <View style={styles.inputContainer}>
-                        <Icon name="lock" style={styles.iconStyle} />
-                        <TextInput style={styles.inputs}
-                            placeholder="Password"
-                            secureTextEntry={true}
-                            onChangeText={(password) => this.setPassword(password)} />
-                    </View>
-
-
-                    <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={this._loginButtonPressed}>
-                        <Text style={styles.loginText}>Login</Text>
-                    </TouchableHighlight>
-
+            <Body>
+              <Text style={styles.heading}>Login</Text>
+              <Text style={{ padding: 80, borderWidth: 1, borderColor: '#000' }}>[Image will come here]</Text>
+              <Item floatingLabel style={styles.inputBox}>
+                <Label style={styles.label}>Email ID</Label>
+                <Input keyboardType='email-address' autoCapitalize='none' />
+              </Item>
+              <Item floatingLabel style={styles.inputBox}>
+                <Label style={styles.label}>Password</Label>
+                <Input secureTextEntry />
+              </Item>
+              <TouchableOpacity rounded style={styles.regButton}>
+                <Text style={styles.buttonText} onPress={() => { }} >Login</Text>
+              </TouchableOpacity>
+              <View style={{ flexDirection: 'row', marginTop: 10 }}>
+                <View style={{ marginRight: 4, }}><Text>New User?</Text></View>
+                <View style={{ marginLeft: 4, }}>
+                  <TouchableOpacity>
+                    <Text style={styles.register}>Register</Text>
+                  </TouchableOpacity>
                 </View>
-            </View>
-            </Container>
-        );
-    }
+              </View>
+            </Body>
+          </ScrollView>
 
-    setUsername = username => {
-        this.setState({ username: username })
-    }
-
-    setPassword = password => {
-        this.setState({ password: password })
-    }
-
-    setSwitchValue = (switchValue) => {
-        console.warn(switchValue)
-        this.setState(prevState => ({
-            switchValue: !prevState.switchValue
-        }));
-
-    }
-
-    _loginButtonPressed = () => {
-        this.props.navigation.navigate('Drawer')
-    }
+        </Content>
+      </Container>
+    );
+  }
 }
 
+
+
+
+
+export default LoginScreen;
+
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#db6574', //red
-    },
-    iconStyle: {
-        color: '#22252a',
-        marginLeft: 15,
-    },
-    outerBox: {
-        // top: 90,
-        alignItems: 'center',
-        borderRadius: 30,
-        backgroundColor: '#22252a',//black
-        opacity: 0.9,
-        paddingVertical: 40,
-        justifyContent:'center',
-        alignItems:'center',
-        paddingHorizontal: 20,
-    },
-    inputContainer: {
-        borderBottomColor: 'black',
-        backgroundColor: '#ffffff',
-        opacity: 1,
-        borderRadius: 30,
-        borderBottomWidth: 1,
-        width: 300,
-        height: 45,
-        marginVertical: 15,
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    inputs: {
-        height: 45,
-        marginLeft: 16,
-        borderBottomColor: '#FFFFFF',
-        flex: 1,
-    },
-    switchTextStyle: {
-        color: "white",
-        marginRight: 8,
-        fontWeight: "700"
-    },
-    inputIcon: {
-        width: 30,
-        height: 30,
-        marginLeft: 15,
-        justifyContent: 'center'
-    },
-    buttonContainer: {
-        height: 45,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 10,
-        marginTop: 12,
-        width: 250,
-        borderRadius: 30,
-    },
-    loginButton: {
-        backgroundColor: "#7cc576",
-        opacity: 1,
-    },
-    loginText: {
-        color: 'white',
-    }
-});
+
+  regButton: {
+    width: 280,
+    height: 40,
+    backgroundColor: '#66f',
+    borderRadius: 20,
+    justifyContent: 'center',
+    marginTop: 10,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 20,
+    alignSelf: 'center',
+    alignContent: 'flex-start',
+    textAlign: 'center',
+  },
+  heading: {
+    fontSize: 25,
+    color: '#119',
+    fontWeight: 'bold',
+    marginTop: 10,
+    marginBottom: 10,
+    marginBottom: 10,
+  },
+  subHeading: {
+    fontSize: 22,
+    color: '#119',
+    alignSelf: 'flex-start',
+    marginTop: 10,
+    marginLeft: 20,
+  },
+  inputBox: {
+    backgroundColor: '#cacaca',
+    borderRadius: 4,
+    marginRight: 28,
+    marginLeft: 28,
+    textAlign: 'left',
+    marginTop: 10,
+    marginBottom: 5,
+    height: 55,
+  },
+  register: {
+    color: '#119',
+    textDecorationLine: 'underline',
+  },
+  label: {
+    marginTop: 5,
+    marginBottom: 10
+  }
+
+})
