@@ -1,73 +1,83 @@
 
 import React, { Component } from 'react';
 import { Button, Body, Input, Container, Content, Header, Item, Label } from 'native-base';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  Dimensions,
+import {  SafeAreaView, StyleSheet, ScrollView, View, Text, StatusBar, TouchableOpacity, KeyboardAvoidingView, TextInput, Dimensions,
 } from 'react-native';
 
 class SignUpScreen extends Component {
 
   render() {
     return (
-      <Container style={{ backgroundColor: '#4fc3fa' }}>
-        <Content>
-          <ScrollView>
-            <Body>
-              <Text style={styles.heading}>Register</Text>
-              <Text style={styles.subHeading}>Account</Text>
-              <Item floatingLabel style={styles.inputBox}>
-                <Label style={styles.label}>Full Name</Label>
-                <Input />
-              </Item>
-              <Item floatingLabel style={styles.inputBox}>
-                <Label style={styles.label}>Email ID</Label>
-                <Input keyboardType='email-address' autoCapitalize='none' />
-              </Item>
-              <Item floatingLabel style={styles.inputBox}>
-                <Label style={styles.label}>Password</Label>
-                <Input secureTextEntry />
-              </Item>
-              <Item floatingLabel style={styles.inputBox}>
-                <Label style={styles.label}>Confirm Password</Label>
-                <Input secureTextEntry />
-              </Item>
-              <Text style={styles.subHeading}>Shop Details</Text>
-              <Item floatingLabel style={styles.inputBox}>
-                <Label style={styles.label}>Name</Label>
-                <Input />
-              </Item>
-              <Item floatingLabel style={styles.inputBox}>
-                <Label style={styles.label}>Address</Label>
-                <Input />
-              </Item>
 
-              <TouchableOpacity rounded style={styles.regButton}>
-                <Text style={styles.buttonText}>Register</Text>
-              </TouchableOpacity>
+      <View style={styles.container}>
+        <View style={styles.innerContainer}>
 
-              <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                <View style={{ marginRight: 4, }}>
-                  <Text>Existing User?</Text></View>
-                <View style={{ marginLeft: 4, }}>
-                  <TouchableOpacity onPress={() => this.props.navigation.navigate('LoginScreen')}>
-                    <Text style={styles.login}>Login</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
 
-            </Body>
-          </ScrollView>
-        </Content>
-      </Container>
-    );
+          <StatusBar backgroundColor='#29434e'
+            barStyle='light-content' />
+
+          <Text style={styles.heading}>Sign Up</Text>
+
+          <TextInput
+            style={styles.inputBox}
+            placeholderTextColor='rgba(0,0,0,0.4)'
+            underLineColorAndroid='#000000'
+            placeholder="Name"
+            onChangeText={(text) => this.setState({ name: text })}
+          />
+          <TextInput
+            style={styles.inputBox}
+            underLineColorAndroid='#000000'
+            placeholderTextColor='rgba(0,0,0,0.4)'
+            placeholder="email-id"
+            keyboardType='email-address'
+            autoCapitalize='none'
+            onChangeText={(text) => this.setState({ email: text })}
+          />
+
+          <TextInput
+            style={styles.inputBox}
+            underLineColorAndroid='#000000'
+            placeholder="password"
+            placeholderTextColor='rgba(0,0,0,0.4)'
+            secureTextEntry={true}
+            autoCapitalize="none"
+            onChangeText={(text) => this.setState({ password: text })}
+          />
+
+          <View style={{ flexDirection: "row", margin: 10, }}>
+            <View style={styles.horizontalLine} />
+            <Text> OR </Text>
+            <View style={styles.horizontalLine} />
+          </View>
+
+          <TouchableOpacity
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>Sign Up</Text>
+          </TouchableOpacity>
+
+          <Text style={styles.lastText}>
+            Already have an account? {"\t\t"}
+
+            <Text
+              style={styles.loginText}
+              onPress={() => this.props.navigation.navigate('LoginScreen')}>
+              Login
+                    </Text>
+
+
+          </Text>
+          {/* <Button
+                    color="transparent"
+                    title="Login "
+                    onPress={() => this.props.navigation.navigate('LoginRoute')}
+                /> */}
+        </View>
+      </View>
+
+
+    )
   }
 }
 
@@ -75,55 +85,74 @@ class SignUpScreen extends Component {
 export default SignUpScreen;
 
 const styles = StyleSheet.create({
-
-  regButton: {
-    width: 280,
-    height: 40,
-    backgroundColor: '#66f',
-    borderRadius: 20,
-    justifyContent: 'center',
-    marginTop: 10,
-    marginBottom: 10,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 20,
-    alignSelf: 'center',
-    alignContent: 'flex-start',
-    textAlign: 'center',
+  container: {
+      flex: 1,
+      paddingTop: 20,
+      justifyContent: 'center',
+      // alignItems: 'center',
+      // alignContent:'center',
+      backgroundColor:'#3598dc',
   },
   heading: {
-    fontSize: 25,
-    color: '#119',
-    fontWeight: 'bold',
-    marginTop: 10,
-    marginBottom: 10,
-    marginBottom: 10,
-  },
-  subHeading: {
-    fontSize: 22,
-    color: '#119',
-    alignSelf: 'flex-start',
-    marginTop: 6,
-    marginLeft: 20,
+      color: 'black',
+      fontSize: 26,
+      marginBottom: 10
   },
   inputBox: {
-    backgroundColor: '#cacaca',
-    borderRadius: 4,
-    marginRight: 28,
-    marginLeft: 28,
-    textAlign: 'left',
-    marginTop: 10,
-    marginBottom: 5,
-    height: 55,
+      marginVertical: 14,
+      paddingHorizontal: 16,
+      width: 300,
+      height: 50,
+      backgroundColor: '#e2e2e2',
+      fontSize: 16,
+      // borderRadius: 25,
   },
-  label: {
-    marginTop: 5,
-    marginBottom: 10
+  buttonText:
+  {
+      fontSize: 18,
+      alignContent: 'center',
+      justifyContent: 'center',
+      color: '#ffffff',
+      textAlign: 'center'
   },
-  login: {
-    color: '#119',
-    textDecorationLine: 'underline',
-},
-
+  horizontalLine: {
+      borderBottomColor: 'black',
+      borderColor: 'red',
+      height: 0,
+      width: 150,
+      borderStyle: 'solid',
+      margin: 10,
+      borderBottomWidth: 1,
+  },
+  innerContainer:{
+      // padding:10,
+      margin:20,
+      paddingTop:16,
+      borderRadius:10,
+      backgroundColor:'#fff',
+      // alignContent:'center',
+      justifyContent:'center',
+      alignItems:'center',
+      // alignSelf:'center',
+  },
+  button:
+  {
+      paddingVertical: 15,
+      paddingHorizontal: 15,
+      margin: 10,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: 20,
+      width: 140,
+      backgroundColor: '#3598dc',
+  },
+  loginText: {
+      fontSize: 16,
+      color: '#1133ff',
+      textDecorationLine: 'underline',
+  },
+  lastText: {
+      margin: 20,
+      fontSize: 16,
+  }
 })

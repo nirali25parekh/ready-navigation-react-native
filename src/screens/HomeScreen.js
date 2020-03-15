@@ -28,6 +28,13 @@ export default class HomeScreen extends Component {
           <Text>Lets Go!</Text>
         </Button>
 
+        <Button
+          style={styles.button}
+          onPress={() => this.props.navigation.navigate('LoginScreen')}
+        >
+          <Text>Exit</Text>
+        </Button>
+
       </Container>
     );
   }
@@ -39,11 +46,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#db6574", //red
     alignSelf: "center",
     justifyContent:'center',
-    margin:20,
+    // margin:20,
+    marginTop:40,
     borderRadius:10,
   },
   container: {
-    // backgroundColor: "#22252a", //black
+    backgroundColor: "#D8D8D8", //black
   },
   text: {
     fontFamily: 'sans-serif-light',

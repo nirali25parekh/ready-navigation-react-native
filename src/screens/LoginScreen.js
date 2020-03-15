@@ -1,112 +1,131 @@
 
 import React, { Component } from 'react';
-import { Button, Body, Input, Container, Content, Header, Item, Label, } from 'native-base';
 import {
-    SafeAreaView,
-    StyleSheet,
-    ScrollView,
-    View,
-    Text,
-    StatusBar,
-    TouchableOpacity,
-    KeyboardAvoidingView,
-    Dimensions,
+    StyleSheet, ScrollView, View, Text, StatusBar, TextInput, TouchableOpacity, KeyboardAvoidingView, Dimensions,
 } from 'react-native';
 
-class LoginScreen extends Component {
+export default class LoginScreen extends Component {
     render() {
         return (
-            <Container style={{ backgroundColor: '#4fc3fa' }}>
-                <Content>
-                    <ScrollView>
+            <View style={styles.container}>
+                <View style={styles.innerContainer}>
 
-                        <Body>
-                            <Text style={styles.heading}>Login</Text>
-                            <Text style={{ padding: 80, borderWidth: 1, borderColor: '#000' }}>[Image will come here]</Text>
-                            <Item floatingLabel style={styles.inputBox}>
-                                <Label style={styles.label}>Email ID</Label>
-                                <Input keyboardType='email-address' autoCapitalize='none' />
-                            </Item>
-                            <Item floatingLabel style={styles.inputBox}>
-                                <Label style={styles.label}>Password</Label>
-                                <Input secureTextEntry />
-                            </Item>
-                            <TouchableOpacity rounded style={styles.regButton} onPress={() => this.props.navigation.navigate('Drawer')}>
-                                <Text style={styles.buttonText} onPress={() => { }} >Login</Text>
-                            </TouchableOpacity>
-                            <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                                <View style={{ marginRight: 4, }}>
-                                    <Text>New User?</Text></View>
-                                <View style={{ marginLeft: 4, }}>
-                                    <TouchableOpacity onPress={() => this.props.navigation.navigate('SignUpScreen')}>
-                                        <Text style={styles.register}>Register</Text>
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
-                        </Body>
-                    </ScrollView>
 
-                </Content>
-            </Container>
-        );
+                    <StatusBar backgroundColor='#29434e'
+                        barStyle='light-content' />
+                    <Text style={styles.heading}>Login</Text>
+
+                    <TextInput
+                        style={styles.inputBox}
+                        underLineColorAndroid='#000000'
+                        placeholderTextColor='rgba(0,0,0,0.4)'
+                        placeholder="email-id"
+                        keyboardType='email-address'
+                        autoCapitalize='none'
+                        onChangeText={(text) => this.setState({ email: text })}
+                    />
+
+                    <TextInput
+                        style={styles.inputBox}
+                        underLineColorAndroid='#000000'
+                        placeholder="password"
+                        placeholderTextColor='rgba(0,0,0,0.4)'
+                        secureTextEntry={true}
+                        autoCapitalize="none"
+                        onChangeText={(text) => this.setState({ password: text })}
+                    />
+
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('HomeScreen')}
+                        style={styles.button}>
+                        <Text style={styles.buttonText}>Log In</Text>
+                    </TouchableOpacity>
+
+
+                    <Text style={styles.lastText}>
+                        Don't have an account? {"\t\t"}
+
+                        <Text
+                            style={styles.signupText}
+                            onPress={() => this.props.navigation.navigate('SignUpScreen')}>
+                            Sign Up
+                        </Text>
+                    </Text>
+                </View>
+            </View>
+        )
     }
 }
 
-
-
-
-
-export default LoginScreen;
-
 const styles = StyleSheet.create({
 
-    regButton: {
-        width: 280,
-        height: 40,
-        backgroundColor: '#66f',
-        borderRadius: 20,
-        justifyContent: 'center',
-        marginTop: 10,
+    horizontalLine: {
+        borderBottomColor: 'black',
+        borderColor: 'red',
+        height: 0,
+        width: 150,
+        borderStyle: 'solid',
+        margin: 10,
+        borderBottomWidth: 1,
     },
-    buttonText: {
-        color: '#fff',
-        fontSize: 20,
-        alignSelf: 'center',
-        alignContent: 'flex-start',
-        textAlign: 'center',
+    container: {
+        paddingTop: 20,
+        flex: 1,
+        backgroundColor: '#3598dc',
+        justifyContent: 'center',
+        // alignSelf:'center',
+        // alignItems: 'center',
+        // alignContent:'center',
     },
     heading: {
-        fontSize: 25,
-        color: '#119',
-        fontWeight: 'bold',
-        marginTop: 10,
-        marginBottom: 10,
-        marginBottom: 10,
-    },
-    subHeading: {
-        fontSize: 22,
-        color: '#119',
-        alignSelf: 'flex-start',
-        marginTop: 10,
-        marginLeft: 20,
+        color: 'black',
+        fontSize: 26,
+        marginBottom: 10
     },
     inputBox: {
-        backgroundColor: '#cacaca',
-        borderRadius: 4,
-        marginRight: 28,
-        marginLeft: 28,
-        textAlign: 'left',
-        marginTop: 10,
-        marginBottom: 5,
-        height: 55,
+        marginVertical: 14,
+        paddingHorizontal: 16,
+        width: 300,
+        height: 50,
+        backgroundColor: '#e2e2e2',
+        fontSize: 16,
+        // borderRadius: 25,
     },
-    register: {
-        color: '#119',
+    innerContainer: {
+        padding: 10,
+        margin: 20,
+        borderRadius: 10,
+        backgroundColor: '#fff',
+        // alignContent:'center',
+        justifyContent: 'center',
+        alignItems: 'center',
+        // alignSelf:'center',
+    },
+    buttonText:
+    {
+        fontSize: 18,
+        alignContent: 'center',
+        justifyContent: 'center',
+        color: '#ffffff',
+        textAlign: 'center'
+    },
+    button:
+    {
+        paddingVertical: 15,
+        paddingHorizontal: 15,
+        margin: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 6,
+        width: 140,
+        backgroundColor: '#3598dc',
+    },
+    signupText: {
+        fontSize: 16,
+        color: '#1133ff',
         textDecorationLine: 'underline',
     },
-    label: {
-        marginTop: 5,
-        marginBottom: 10
+    lastText: {
+        margin: 20,
+        fontSize: 16,
     }
-
 })
